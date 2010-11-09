@@ -1,0 +1,201 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.jboss.drools</groupId>
+	<artifactId>brms-config</artifactId>
+	<packaging>jar</packaging>
+	<version>1.0.0-SNAPSHOT</version>
+	<name>brmsconfig</name>
+	<url>http://maven.apache.org</url>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-core</artifactId>
+			<version>5.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-compiler</artifactId>
+			<version>5.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-api</artifactId>
+			<version>5.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-templates</artifactId>
+			<version>5.1.1</version>
+		</dependency>
+		<dependency>
+                        <groupId>org.drools</groupId>
+                        <artifactId>drools-process-task</artifactId>
+                        <version>5.1.1</version>
+                </dependency>
+		<dependency>
+                        <groupId>org.drools</groupId>
+                        <artifactId>drools-bam</artifactId>
+                        <version>5.1.1</version>
+                </dependency>
+		<dependency>
+                        <groupId>org.drools</groupId>
+                        <artifactId>drools-bpmn2</artifactId>
+                        <version>5.1.1</version>
+                </dependency>
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-workitems</artifactId>
+			<version>5.1.1</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>brmsconfig</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<mainClass>org.jboss.drools.brmsconfig.BrmsConfigMain</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>attached</goal>
+						</goals>
+						<phase>package</phase>
+						<configuration>
+							<descriptorRefs>
+								<descriptorRef>jar-with-dependencies</descriptorRef>
+							</descriptorRefs>
+							<archive>
+								<manifest>
+									<mainClass>org.jboss.drools.brmsconfig.BrmsConfigMain</mainClass>
+								</manifest>
+							</archive>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+
+	<repositories>
+		<repository>
+			<id>repository.jboss.org</id>
+			<url>http://repository.jboss.org/maven2</url>
+			<snapshots>
+
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+		<repository>
+			<id>snapshots.jboss.org</id>
+
+			<url>http://snapshots.jboss.org/maven2</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+
+		</repository>
+
+		<repository><!-- used by mvel to publish snapshots -->
+			<id>codehaus-snapshot</id>
+			<url>http://snapshots.repository.codehaus.org</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</repository>
+		<repository><!-- TODO dead code, this probably isn't used anymore -->
+			<id>maven-snapshots</id>
+			<url>http://snapshots.maven.codehaus.org/maven2</url>
+			<snapshots>
+
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</repository>
+		<repository><!-- TODO dead code, this probably isn't used anymore -->
+			<id>apache.org</id>
+
+			<name>Maven Snapshots</name>
+			<url>http://people.apache.org/repo/m2-snapshot-repository</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>false</enabled>
+
+			</releases>
+		</repository>
+		<repository><!-- TODO dead code, this probably isn't used anymore -->
+			<id>apache.org</id>
+			<!--
+				TODO this id clashes with previous repository: that's bad
+			-->
+			<name>Maven Releases</name>
+			<url>http://people.apache.org/repo/m2-ibiblio-rsync-repository</url>
+			<snapshots>
+
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+		<repository>
+			<id>codehaus</id>
+
+			<url>http://repository.codehaus.org</url>
+		</repository>
+		<repository>
+			<id>apache-incubating</id>
+			<name>Apache Incubating Repository</name>
+			<url>http://people.apache.org/repo/m2-incubating-repository/</url>
+		</repository>
+
+		<repository>
+			<id>clojars</id>
+			<url>http://clojars.org/repo</url>
+		</repository>
+
+	</repositories>
+
+</project>
