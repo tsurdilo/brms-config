@@ -17,7 +17,7 @@ public class DroolsUtil {
 	public DroolsUtil setupRuleEngine() {
 		if(kbase == null) {
 			KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
-			kbuilder.add(ResourceFactory.newClassPathResource("/main.rf"), ResourceType.DRF);
+			kbuilder.add(ResourceFactory.newClassPathResource("/flows/main.rf"), ResourceType.DRF);
 			KnowledgeBuilderErrors errors = kbuilder.getErrors();
 			if (errors.size() > 0) {
 				for (KnowledgeBuilderError error : errors) {
