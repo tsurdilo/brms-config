@@ -2,35 +2,40 @@
 <process xmlns="http://drools.org/drools-5.0/process"
          xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
          xs:schemaLocation="http://drools.org/drools-5.0/process drools-processes-5.0.xsd"
-         type="RuleFlow" name="org.drools.brmsconfig.mainflow" id="org.drools.brmsconfig.mainflow" >
+         type="RuleFlow" name="org.drools.brmsconfig.mainflow" id="org.drools.brmsconfig.mainflow" package-name="org.drools.brmsconfig" >
 
   <header>
   </header>
 
   <nodes>
-    <start id="1" name="Start" x="16" y="16" width="80" height="48" />
-    <end id="2" name="End" x="240" y="132" width="80" height="40" />
-    <workItem id="3" name="Main Menu" x="128" y="20" width="80" height="40" >
+    <state id="16" name="WaitInput" x="78" y="181" width="98" height="40" >
+    </state>
+    <start id="1" name="Start" x="85" y="16" width="80" height="48" />
+    <actionNode id="4" name="Action1" x="16" y="312" width="93" height="40" >
+        <action type="expression" dialect="java" >System.out.println("doing action1");</action>
+    </actionNode>
+    <actionNode id="5" name="Action2" x="141" y="312" width="93" height="40" >
+        <action type="expression" dialect="java" >System.out.println("doing action2");</action>
+    </actionNode>
+    <workItem id="11" name="Main Menu" x="75" y="96" width="100" height="40" >
       <work name="Main Menu" >
         <parameter name="Mode" >
           <type name="org.drools.process.core.datatype.impl.type.StringDataType" />
         </parameter>
       </work>
     </workItem>
-    <actionNode id="4" name="Action1" x="16" y="96" width="80" height="40" >
-        <action type="expression" dialect="java" >System.out.println("doing action1");</action>
-    </actionNode>
-    <actionNode id="5" name="Action2" x="16" y="168" width="80" height="40" >
-        <action type="expression" dialect="java" >System.out.println("doing action2");</action>
-    </actionNode>
-    <join id="6" name="Join" x="128" y="132" width="80" height="40" type="2" />
+    <join id="14" name="Join" x="84" y="384" width="80" height="40" type="2" />
+    <end id="15" name="End" x="84" y="456" width="80" height="40" />
   </nodes>
 
   <connections>
-    <connection from="6" to="2" />
-    <connection from="1" to="3" />
-    <connection from="4" to="6" />
-    <connection from="5" to="6" />
+    <connection from="11" to="16" />
+    <connection from="16" to="4" />
+    <connection from="16" to="5" />
+    <connection from="1" to="11" />
+    <connection from="4" to="14" />
+    <connection from="5" to="14" />
+    <connection from="14" to="15" />
   </connections>
 
 </process>

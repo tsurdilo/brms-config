@@ -1,0 +1,10 @@
+package org.drools.brmsconfig
+import org.drools.brmsconfig.command.CommandImpl;
+
+rule "dispatchRule"
+	when
+		$c : CommandImpl(); 
+	then 
+		drools.getWorkingMemory().getProcessInstance($c.getPid()).signalEvent($c.getSignalType(), $c.getSignalData());
+		drools.retract($c);
+end
